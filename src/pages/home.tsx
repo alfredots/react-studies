@@ -1,3 +1,4 @@
+'use client';
 /*
   To-do
   [x] Validação / transformação
@@ -23,7 +24,9 @@ function toCapitalize(name: string) {
 
 const createUserFormSchema = z.object({
   avatar: z
-    .instanceof(FileList)
+    .instanceof(
+      typeof window === 'undefined' ? z.any() : z.instanceof(FileList)
+    )
     .transform((list) => list.item(0)!)
     .refine(
       (file) => file.size <= 5 * 1024 * 1024,

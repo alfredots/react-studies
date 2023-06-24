@@ -1,14 +1,11 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 
-import { ThemeProvider } from 'styled-components';
-
-import GlobalStyles from 'styles/global';
-import theme from 'styles/theme';
+import '../styles/globals.css';
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Head>
         <title>Project</title>
         <link rel="shorcut icon" href="/img/bg.png" />
@@ -17,8 +14,7 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="description" content="Project" />
       </Head>
       <Component {...pageProps} />
-      <GlobalStyles />
-    </ThemeProvider>
+    </>
   );
 }
 

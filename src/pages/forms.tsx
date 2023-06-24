@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import { useForm, FormProvider, useFieldArray } from 'react-hook-form';
 
@@ -58,7 +59,9 @@ const createUserSchema = z.object({
       message: 'Pelo menos 3 tecnologias devem ser informadas.'
     }),
   avatar: z
-    .instanceof(FileList)
+    .instanceof(
+      typeof window === 'undefined' ? z.any() : z.instanceof(FileList)
+    )
     .refine((files) => !!files.item(0), 'A imagem de perfil é obrigatória')
     .refine(
       (files) => files.item(0)!.size <= MAX_FILE_SIZE,

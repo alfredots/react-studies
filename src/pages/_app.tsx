@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import '../styles/globals.css';
 
@@ -13,7 +14,9 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="manifest" href="/manifest.json" />
         <meta name="description" content="Project" />
       </Head>
-      <Component {...pageProps} />
+      <ErrorBoundary FallbackComponent={() => <h1>Crashou</h1>}>
+        <Component {...pageProps} />
+      </ErrorBoundary>
     </>
   );
 }
